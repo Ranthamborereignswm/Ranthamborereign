@@ -195,4 +195,173 @@ document.getElementById('enquiryForm').addEventListener('submit',function(e){
  if(!opened){window.location.href=url;}
 });
 </script>
+  
+<style>
+#rr-new {
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: #101c16;
+  padding: 24px 16px;
+  border-radius: 18px;
+  margin: 24px auto;
+  max-width: 1000px;
+}
+#rr-new .rr-hero {
+  padding: 32px 20px;
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, #101c16 5%, #101c16dd 60%, #101c1680),
+    url('https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1400&q=85')
+    center/cover;
+}
+#rr-new h2 { line-height: 1.25; }
+#rr-new .rr-gold { color: #f3c66b; }
+#rr-new form {
+  display: grid;
+  gap: 12px;
+  max-width: 560px;
+  margin-top: 20px;
+}
+#rr-new label { display: grid; gap: 6px; }
+#rr-new input, #rr-new select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #b9c2ba;
+  background: #fff;
+  color: #172019;
+  font-size: 16px;
+}
+#rr-new .rr-button {
+  display: inline-block;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 9px;
+  background: #e7b957;
+  color: #172019;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+#rr-new .rr-note {
+  color: #e0e6df;
+  font-size: 14px;
+  line-height: 1.6;
+}
+</style>
+
+<section id="rr-new">
+  <div class="rr-hero">
+    <p class="rr-gold"><strong>RANTHAMBORE REIGN</strong></p>
+    <h2>Plan Your Ranthambore Safari</h2>
+    <p>
+      Discover the wild beauty of Ranthambore.
+      Enquire about safari options and plan your
+      wildlife adventure with our assistance.
+    </p>
+    <a class="rr-button" href="#rr-enquiry">
+      Enquire on WhatsApp
+    </a>
+  </div>
+
+  <div id="rr-enquiry">
+    <h2 class="rr-gold">Safari Enquiry</h2>
+    <p>Share your travel details to start an enquiry.</p>
+
+    <form id="rr-form">
+      <label>
+        Your name (optional)
+        <input id="rr-name" type="text"
+          placeholder="Enter your name" />
+      </label>
+
+      <label>
+        Preferred visit date
+        <input id="rr-date" type="date" required />
+      </label>
+
+      <label>
+        Number of travellers
+        <select id="rr-guests" required>
+          <option value="1">1 person</option>
+          <option value="2" selected>2 people</option>
+          <option value="3">3 people</option>
+          <option value="4">4 people</option>
+          <option value="5">5 people</option>
+          <option value="6+">6 or more people</option>
+        </select>
+      </label>
+
+      <label>
+        Preferred safari option
+        <select id="rr-safari" required>
+          <option value="Need advice">Please advise me</option>
+          <option value="Jeep safari enquiry">Jeep safari</option>
+          <option value="Canter safari enquiry">Canter safari</option>
+        </select>
+      </label>
+
+      <label>
+        WhatsApp contact
+        <select id="rr-contact">
+          <option value="919461216570">
+            Contact 1
+          </option>
+          <option value="917976758592">
+            Contact 2
+          </option>
+        </select>
+      </label>
+
+      <button class="rr-button" type="submit">
+        Send WhatsApp Enquiry
+      </button>
+    </form>
+
+    <p class="rr-note">
+      This form sends an enquiry only. Safari availability,
+      official booking rules and prices must be confirmed
+      before payment. Safari booking is subject to official
+      availability and applicable permissions.
+    </p>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById("rr-form");
+  if (!form) return;
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var name = document.getElementById("rr-name").value.trim();
+    var date = document.getElementById("rr-date").value;
+    var guests = document.getElementById("rr-guests").value;
+    var safari = document.getElementById("rr-safari").value;
+    var phone = document.getElementById("rr-contact").value;
+
+    if (!date) {
+      alert("Please select your preferred visit date.");
+      return;
+    }
+
+    var message =
+      "Hello Ranthambore Reign! I would like to enquire about a safari." +
+      "\nName: " + (name || "Not provided") +
+      "\nPreferred date: " + date +
+      "\nTravellers: " + guests +
+      "\nSafari preference: " + safari +
+      "\nPlease share current availability, prices and booking requirements.";
+
+    var url = "https://wa.me/" + phone +
+      "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank", "noopener");
+  });
+})();
+</script>
+
 </body></html>
